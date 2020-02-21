@@ -1,0 +1,315 @@
+﻿<!DOCTYPE html>
+<html lang="en" >
+
+    <head>
+        <meta charset="UTF-8">
+        <title>AY</title>
+        <meta name="viewport" content="width=device-width">
+        <style>
+            /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+            *{ box-sizing: border-box; user-select: none; }
+            html, body{ margin: 7%; height: 100%; }
+            body{
+                display: flex-start;
+                background: #3a3f52;
+                justify-content: center;
+                align-items: center;
+                font: 18px/1.4 "RobotoDraft", sans-serif;
+                color: #fff;
+            }
+
+            section{
+                display: flex;
+                flex-direction: column;
+                padding: 0.01em;
+            }
+
+            h1{
+                font-weight: 100;
+                font-size: 2em;
+                cursor: default;
+                margin: 0 0 0 0;
+            }
+
+            input[type='checkbox']{ height: 0; width: 0; }
+
+            input[type='checkbox'] + label{
+                position: relative;
+                display: flex;
+                margin: .2em 0;
+                align-items: center;
+                color: #9e9e9e;
+                transition: color 250ms cubic-bezier(.4,.0,.23,1);
+            }
+            input[type='checkbox'] + label > ins{
+                position: absolute;
+                display: block;
+                bottom: 0;
+                left: 2em;
+                height: 0;
+                width: 100%;
+                overflow: hidden;
+                text-decoration: none;
+                transition: height 300ms cubic-bezier(.4,.0,.23,1);
+            }
+            input[type='checkbox'] + label > ins > i{
+                position: absolute;
+                bottom: 0;
+                font-style: normal;
+                color: #4FC3F7;
+            }
+            input[type='checkbox'] + label > span{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-right: 1em;
+                width: 1em;
+                height: 1em;
+                background: transparent;
+                border: 2px solid #9E9E9E;
+                border-radius: 2px;
+                cursor: pointer;  
+                transition: all 250ms cubic-bezier(.4,.0,.23,1);
+            }
+
+            input[type='checkbox'] + label:hover, input[type='checkbox']:focus + label{
+                color: #fff;
+            }
+            input[type='checkbox'] + label:hover > span, input[type='checkbox']:focus + label > span{
+                background: rgba(255,255,255,.1);
+            }
+            input[type='checkbox']:checked + label > ins{ height: 100%; }
+
+            input[type='checkbox']:checked + label > span{
+                border: .5em solid #0095f7;
+                animation: shrink-bounce 200ms cubic-bezier(.4,.0,.23,1);
+            }
+            input[type='checkbox']:checked + label > span:before{
+                content: "";
+                position: absolute;
+                top: .6em;
+                left: .2em;
+                border-right: 3px solid transparent;
+                border-bottom: 3px solid transparent;
+                transform: rotate(45deg);
+                transform-origin: 0% 100%;
+                animation: checkbox-check 125ms 250ms cubic-bezier(.4,.0,.23,1) forwards;
+            }
+
+            @keyframes shrink-bounce{
+                0%{
+                    transform: scale(1);
+                }
+                33%{    
+                    transform: scale(.85);
+                }
+                100%{
+                    transform: scale(1);    
+                }
+            }
+            @keyframes checkbox-check{
+                0%{
+                    width: 0;
+                    height: 0;
+                    border-color: #212121;
+                    transform: translate3d(0,0,0) rotate(45deg);
+                }
+                33%{
+                    width: .2em;
+                    height: 0;
+                    transform: translate3d(0,0,0) rotate(45deg);
+                }
+                100%{    
+                    width: .2em;
+                    height: .5em;    
+                    border-color: #212121;
+                    transform: translate3d(0,-.5em,0) rotate(45deg);
+                }
+            }
+            .button {
+                display: inline-block;
+                border-radius: 4px;
+                background-color: #0095f7;
+                border: none;
+                color: #FFFFFF;
+                text-align: center;
+                font-size: 18px;
+                padding: 10px;
+                width: 100px;
+                transition: all 0.5s;
+                cursor: pointer;
+                margin: .6em 0;
+            }
+
+            .button span {
+                cursor: pointer;
+                display: inline-block;
+                position: relative;
+                transition: 0.5s;
+            }
+
+            .button span:after {
+                content: '\00bb';
+                position: absolute;
+                opacity: 0;
+                top: 0;
+                right: -20px;
+                transition: 0.5s;
+            }
+
+            .button:hover span {
+                padding-right: 25px;
+            }
+
+            .button:hover span:after {
+                opacity: 1;
+                right: 0;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <section>
+            <form action="hasil.php" method="POST">
+                <h1>Pilih pernyataan yang menggambarkan diri anda</h1>
+
+                <input name="a1" id='a1' type='checkbox' value="1"/>
+                <label for='a1'>
+                    <span></span>
+                    Berani mencoba hal diluar kebiasaan anda
+                    <ins><i>Berani mencoba hal diluar kebiasaan anda</i></ins>
+                </label>
+
+                <input name="a2" id='a2' type='checkbox' value="1"/>
+                <label for='a2'>
+                    <span></span>
+                    Suka mentargetkan goals anda
+                    <ins><i>Suka mentargetkan goals anda</i></ins>
+                </label>
+
+                <input name="a3" id='a3' type='checkbox' value="1"/>
+                <label for='a3'>
+                    <span></span>
+                    Orang yang ceroboh
+                    <ins><i>Orang yang ceroboh</i></ins>
+                </label>
+
+                <input name="a4" id='a4' type='checkbox' value="1"/>
+                <label for='a4'>
+                    <span></span>
+                    Selalu ingin bebas melakukan sesuatu tanpa dorongan orang lain
+                    <ins><i>Selalu ingin bebas melakukan sesuatu tanpa dorongan orang lain</i></ins>
+                </label>
+
+                <input name="a5" id='a5' type='checkbox' value="1"/>
+                <label for='a5'>
+                    <span></span>
+                    Berani mencoba hal diluar kebiasaan anda
+                    <ins><i>Berani mencoba hal diluar kebiasaan anda</i></ins>
+                </label>
+
+                <input name="a6" id='a6' type='checkbox' value="1"/>
+                <label for='a6'>
+                    <span></span>
+                    Semakin terpacu melakukan sesuatu jika ada tantangannya
+                    <ins><i>Semakin terpacu melakukan sesuatu jika ada tantangannya</i></ins>
+                </label>
+
+                <input name="a7" id='a7' type='checkbox' value="1"/>
+                <label for='a7'>
+                    <span></span>
+                    Gampang bergaul dengan orang baru
+                    <ins><i>Gampang bergaul dengan orang baru</i></ins>
+                </label>
+
+                <input name="a8" id='a8' type='checkbox' value="1"/>
+                <label for='a8'>
+                    <span></span>
+                    Sering mendengarkan musik disela-sela waktu luang anda
+                    <ins><i>Sering mendengarkan musik disela-sela waktu luang anda</i></ins>
+                </label>
+
+                <input name="a9" name="a9" id="a9" type="checkbox" value="1"/>
+                <label for="a9">
+                    <span></span>
+                    Selalu ingin terlihat rapih ketika keluar dari rumah anda
+                    <ins><i>Selalu ingin terlihat rapih ketika keluar dari rumah anda</i></ins>
+                </label>
+
+                <input name="a10" id="a10" type="checkbox" value="1"/>
+                <label for="a10">
+                    <span></span>
+                    Sangat percaya diri terhadap diri anda
+                    <ins><i>Sangat percaya diri terhadap diri anda</i></ins>
+                </label>
+
+                <input name="a11" id="a11" type="checkbox" value="1"/>
+                <label for="a11">
+                    <span></span>
+                    Cenderung tetutup dengan orang lain
+                    <ins><i>Cenderung tetutup dengan orang lain</i></ins>
+                </label>
+
+                <input name="a12" id='a12' type='checkbox' value="1"/>
+                <label for='a12'>
+                    <span></span>
+                    Memilih barang tergantung merk/brand
+                    <ins><i>Memilih barang tergantung merk/brand</i></ins>
+                </label>
+
+                <input name="a13" id='a13' type='checkbox' value="1"/>
+                <label for='a13'>
+                    <span></span>
+                    Suka terkoneksi dengan teman anda setiap waktu
+                    <ins><i>Suka terkoneksi dengan teman anda setiap waktu</i></ins>
+                </label>
+
+                <input name="a14" id='a14' type='checkbox' value="1"/>
+                <label for='a14'>
+                    <span></span>
+                    Suka berkirim pesan (email, sms, chat) dengan teman
+                    <ins><i>Suka berkirim pesan (email, sms, chat) dengan teman</i></ins>
+                </label>
+
+                <input name="a15" id='a15' type='checkbox' value="1"/>
+                <label for='a15'>
+                    <span></span>
+                    Harus selalu terhubung internet setiap waktu
+                    <ins><i>Harus selalu terhubung internet setiap waktu</i></ins>
+                </label>
+
+                <input name="a16" id="a16" type="checkbox" value="1"/>
+                <label for="a16">
+                    <span></span>
+                    Merasa lega jika permasalahan anda ditulis ke dalam media sosial
+                    <ins><i>Merasa lega jika permasalahan anda ditulis ke dalam media sosial</i></ins>
+                </label>
+
+                <h1><br>Berapa kisaran harga hp yang anda inginkan</h1>
+                <input name="a17" id='a17' type='checkbox' value="1"/>
+                <label for='a17'>
+                    <span></span>
+                    Harga dari 100.000 - 1.500.000
+                    <ins><i>Harga dari 100.000 - 1.500.000</i></ins>
+                </label>
+
+                <input name="a18" id='a18' type='checkbox' value="1"/>
+                <label for='a18'>
+                    <span></span>
+                    Harga dari 1.600.000 - 3.000.000
+                    <ins><i>Harga dari 1.600.000 - 3.000.000</i></ins>
+                </label>
+
+                <input name="a19" id='a19' type='checkbox' value="1"/>
+                <label for='a19'>
+                    <span></span>
+                    Diatas 3.000.000
+                    <ins><i>Diatas 3.000.000</i></ins>
+                </label>
+
+                <input type="submit" class="button" value="Send" id="btn" name="login">
+            </form>
+        </section>
+    </body>
+</html>
